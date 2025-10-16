@@ -276,6 +276,13 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
                 </shadow>
             </value>
         </block>
+        <block type="looks_tutorialmod_alert">
+            <value name="MESSAGE">
+                <shadow type="text">
+                    <field name="TEXT">${hello}</field>
+                </shadow>
+            </value>
+        </block>
         <block type="looks_thinkforsecs">
             <value name="MESSAGE">
                 <shadow type="text">
@@ -920,6 +927,26 @@ const sensing = function (isInitialSetup, isStage) {
             </value>
         </block>
         <block type="sensing_getclipboard"/>
+        ${blockSeparator}
+        <block type="sensing_savedata">
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT">apple</field>
+                </shadow>
+            </value>
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT">banana</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sensing_getdata">
+            <value name="NAME">
+                <shadow type="text">
+                    <field name="TEXT">banana</field>
+                </shadow>
+            </value>
+        </block>
         ${isStage ? '' : `
             ${blockSeparator}
             <block type="sensing_setdragmode" id="sensing_setdragmode"></block>
@@ -973,6 +1000,7 @@ const sensing = function (isInitialSetup, isStage) {
             </value>
         </block>
         <block type="sensing_username"/>
+        <block type="sensing_unix"/>
         ${categorySeparator}
     </category>
     `;

@@ -219,8 +219,6 @@ const Footer = () => (
                             id="tw.snail-studio"
                         />
                     </a>
-                        />
-                    </a>
                   </div>
                 </div>
             </div>

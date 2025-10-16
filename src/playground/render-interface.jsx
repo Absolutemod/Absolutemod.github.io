@@ -71,7 +71,7 @@ const handleClickAddonSettings = () => {
 
 const messages = defineMessages({
     defaultTitle: {
-        defaultMessage: 'A mod of Snail IDE',
+        defaultMessage: 'A mod of Circle IDE',
         description: 'Title of homepage',
         id: 'tw.guiDefaultTitle'
     }
@@ -237,9 +237,9 @@ class Interface extends React.Component {
     }
     handleUpdateProjectTitle(title, isDefault) {
         if (isDefault || !title) {
-            document.title = `Circle IDE | ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `AbsoluteMod | ${this.props.intl.formatMessage(messages.defaultTitle)}`;
         } else {
-            document.title = `${title} | Circle IDE`;
+            document.title = `${title} | AbsoluteMod`;
         }
     }
     render() {

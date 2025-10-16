@@ -30,6 +30,13 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
+        <block type="motion_movegrids">
+            <value name="STEPS">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
         <block type="motion_movebacksteps">
             <value name="STEPS">
                 <shadow type="math_number">
@@ -177,6 +184,28 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
+        <block type="motion_pointtowards_xyfrom">
+            <value name="X">
+                <shadow id="pointx" type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="Y">
+                <shadow id="pointy" type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="FROMX">
+                <shadow id="pointx" type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="FROMY">
+                <shadow id="pointy" type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+        </block>
         <block type="motion_turnaround"/>
         ${blockSeparator}
         <block type="motion_changexby">
@@ -228,7 +257,6 @@ const motion = function (isInitialSetup, isStage, targetId) {
         </block>
         ${blockSeparator}
         <block type="motion_setrotationstyle"/>
-        ${blockSeparator}
         <block type="motion_move_sprite_to_scene_side"/>
         ${blockSeparator}
         <block id="${targetId}_xposition" type="motion_xposition"/>
@@ -417,6 +445,18 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
                     </shadow>
                 </value>
             </block>
+            <block type="looks_changeStretch">
+                <value name="X">
+                    <shadow type="math_number">
+                        <field name="NUM">15</field>
+                    </shadow>
+                </value>
+                <value name="Y">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
             <block type="looks_stretchGetX"></block>
             <block type="looks_stretchGetY"></block>
         `}
@@ -472,6 +512,11 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
                     <shadow type="math_integer">
                         <field name="NUM">1</field>
                     </shadow>
+                </value>
+            </block>
+            <block type="looks_goTargetLayer">
+                <value name="VISIBLE_OPTION">
+                    <shadow type="looks_getOtherSpriteVisible_menu"/>
                 </value>
             </block>
             <block type="looks_layersGetLayer"></block>
@@ -561,7 +606,6 @@ const sound = function (isInitialSetup, isStage, targetId, soundName) {
                 </shadow>
             </value>
         </block>
-        ${blockSeparator}
         <block id="${targetId}_sound_getLength" type="sound_getLength">
             <value name="SOUND_MENU">
                 <shadow type="sound_sounds_menu">
@@ -681,6 +725,8 @@ const control = function (isInitialSetup, isStage) {
             </value>
         </block>
         <block id="forever" type="control_forever"/>
+        <block type="control_exitLoop"/>
+        <block type="control_continueLoop"/>
         ${blockSeparator}
         <block type="control_switch"/>
         <block type="control_switch_default"/>
@@ -766,6 +812,7 @@ const control = function (isInitialSetup, isStage) {
                 </value>
             </block>
             <block type="control_delete_this_clone"/>
+            <block type="control_is_clone"/>
         `}
         ${blockSeparator}
         <block type="control_get_counter"/>
@@ -1001,6 +1048,7 @@ const sensing = function (isInitialSetup, isStage) {
         </block>
         <block type="sensing_username"/>
         <block type="sensing_unix"/>
+        <block type="argument_reporter_boolean"><field name="VALUE">is compiled?</field></block>
         ${categorySeparator}
     </category>
     `;
@@ -1444,7 +1492,7 @@ const variables = function () {
 const lists = function () {
     return `
     <category
-        name="Lists"
+        name="Arrays"
         id="lists"
         colour="#FF8C1A"
         secondaryColour="#DB6E00"
@@ -1484,11 +1532,64 @@ const effectsCategory = function () {
 const myBlocks = function () {
     return `
     <category
-        name="%{BKY_CATEGORY_MYBLOCKS}"
+        name="Custom Blocks"
         id="myBlocks"
         colour="#FF6680"
         secondaryColour="#FF4D6A"
         custom="PROCEDURE">
+    </category>
+    `;
+};
+
+const comments = function () {
+    // Note: the category's secondaryColour matches up with the blocks' tertiary color, both used for border color.
+    return `
+    <category
+        name="Comments"
+        id="comments"
+        colour="#E4DB8C"
+        secondaryColour="#A8A167">
+        <block type="comments_hat">
+            <value name="COMMENT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="comments_command">
+            <value name="COMMENT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="comments_loop">
+            <value name="COMMENT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="comments_reporter">
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+            <value name="COMMENT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="comments_boolean">
+            <value name="COMMENT">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        ${categorySeparator}
     </category>
     `;
 };
@@ -1570,6 +1671,7 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
     const effectsXML = moveCategory('effects') || effectsCategory(isInitialSetup, isStage, targetId);
     const myBlocksXML = moveCategory('procedures') || myBlocks(isInitialSetup, isStage, targetId);
     const liveTestsXML = moveCategory('liveTests') || liveTests(isLiveTest);
+    const commentsXML = moveCategory('comments') || comments();
 
     const everything = [
         xmlOpen,
@@ -1584,6 +1686,7 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
         listsXML, gap,
         effectsXML, gap,
         myBlocksXML, gap,
+        commentsXML, gap,
         isLiveTest ? [liveTestsXML, gap] : ''
     ];
 

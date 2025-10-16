@@ -28,6 +28,6 @@ const manifest = {
   "tags": [
     "theme"
   ],
-  "enabledByDefault": true
+  "enabledByDefault": false
 };
 export default manifest;

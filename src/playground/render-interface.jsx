@@ -116,8 +116,8 @@ const Footer = () => (
             <div className={styles.footerText}>
                 <FormattedMessage
                     // eslint-disable-next-line max-len
-                    defaultMessage="PenguinMod, Snail IDE, Circle IDE, and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation. This is just a awesome mod i made. 🙂"
-                    description="Disclaimer that PenguinMod, Snail IDE, Circle IDE, and TurboWarp are not connected to Scratch"
+                    defaultMessage="PenguinMod, Snail IDE, Circle IDE, Absolutemod, and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation. This is just a awesome mod i made. 🙂"
+                    description="Disclaimer that PenguinMod, Snail IDE, Circle IDE, AbsoluteMod, and TurboWarp are not connected to Scratch"
                     id="tw.footer.disclaimer"
                 />
             </div>
@@ -375,7 +375,7 @@ class Interface extends React.Component {
                                 <p>
                                     <FormattedMessage
                                         // eslint-disable-next-line max-len
-                                        defaultMessage="Circle IDE is a mod of Snail IDE to add new blocks and features either in extensions or in Circle IDE's main toolbox. Snail IDE is a mod of PenguinMod to expand on the toolset even more."
+                                        defaultMessage="AbsoluteMod is a mod of Circle IDE to add new blocks and features either in extensions or in Absolutemod's main toolbox. Snail IDE is a mod of PenguinMod to expand on the toolset even more."
                                         description="Description of PenguinMod and TurboWarp"
                                         id="tw.home.description"
                                     />

@@ -528,6 +528,7 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
             <block id="${targetId}_costumenumbername" type="looks_costumenumbername"/>
             <block id="backdropnumbername" type="looks_backdropnumbername"/>
             <block id="${targetId}_size" type="looks_size"/>
+            <block id="${targetId}_costumes" type="looks_costumes"/>
         `}
         ${categorySeparator}
     </category>
@@ -661,6 +662,13 @@ const events = function (isInitialSetup, isStage) {
         <block type="event_touchingobjectmenu"></block>
         <block type="event_whenanything">
             <value name="ANYTHING"></value>
+        </block>
+        <block type="event_whenjavascript">
+            <value name="JS">
+                <shadow type="text">
+                    <field name="TEXT">false</field>
+                </shadow>
+            </value>
         </block>
         <block type="event_whenkeypressed"></block>
         <block type="event_whenkeyhit"></block>
@@ -814,6 +822,14 @@ const control = function (isInitialSetup, isStage) {
             <block type="control_delete_this_clone"/>
             <block type="control_is_clone"/>
         `}
+        ${blockSeparator}
+        <block type="control_javascript_command">
+            <value name="JS">
+                <shadow type="text">
+                    <field name="TEXT">alert('hello!')</field>
+                </shadow>
+            </value>
+        </block>
         ${blockSeparator}
         <block type="control_get_counter"/>
         <block type="control_incr_counter"/>
@@ -1455,6 +1471,21 @@ const operators = function (isInitialSetup) {
             <value name="NUM">
                 <shadow type="math_number">
                     <field name="NUM"/>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+        <block type="operator_javascript_output">
+            <value name="JS">
+                <shadow type="text">
+                    <field name="TEXT">Math.random()</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_javascript_boolean">
+            <value name="JS">
+                <shadow type="text">
+                    <field name="TEXT">Math.round(Math.random()) === 1</field>
                 </shadow>
             </value>
         </block>

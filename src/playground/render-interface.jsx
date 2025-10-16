@@ -299,7 +299,7 @@ class Interface extends React.Component {
                                     <p>If you would like your extension removed/added to Circle IDE, please contact us in some way. Common way is @-sodium_test- on scratch.</p>
                             </div>
                             <div className={styles.remixWarningBox}>
-                                    <p>New extensions coming soon!</p>
+                                    <p>This mod of Circle IDE adds extensions, blocks and features from every scratch mod, examples: Nitrobolt, Mistwarp, Snail-IDE, Cocrea</p>
                             </div>
                             {/* project not approved message */}
                             {(window.LastFetchedProject) != null && (window.LastFetchedProject.accepted == false) ? (

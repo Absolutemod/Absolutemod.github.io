@@ -159,7 +159,14 @@ const menuItems = [
         featured: true
     },
 
-
+    {
+        name: 'Face Sensing',
+        extensionId: 'https://extensions.turbowarp.org/lab/face-sensing.js',
+        iconURL: 'https://studio.penguinmod.com/static/assets/4851d7c79a543911b338f4f87a7f2f5d.png',
+        tags: ['scratch'],
+        description: 'Sense faces with the camera.',
+        featured: true
+    },
         
       {
         name: '3D',

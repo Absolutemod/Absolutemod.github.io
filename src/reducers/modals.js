@@ -152,6 +152,7 @@ export {
     openUsernameModal,
     openSettingsModal,
     openCustomExtensionModal,
+    openRestorePointModal: openModal
     closeBackdropLibrary,
     closeCostumeLibrary,
     closeExtensionLibrary,
@@ -164,5 +165,6 @@ export {
     closeConnectionModal,
     closeUsernameModal,
     closeSettingsModal,
-    closeCustomExtensionModal
+    closeCustomExtensionModal,
+    closeRestorePointModal: closeModal
 };
